@@ -2,24 +2,37 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
-using PayablesData;
+using VendorMaintenance;
 
 namespace VendorMaintenance
 {
+    /// <summary>
+    /// class used to create add/modify form
+    /// </summary>
     public partial class frmAddModifyVendor : Form
     {
+        #region Constructors
+
+        /// <summary>
+        /// constructor
+        /// </summary>
         public frmAddModifyVendor()
         {
             InitializeComponent();
         }
 
+        #endregion
+
+        #region Data Members
+
         public bool addVendor;
         public Vendor vendor;
         private List<State> stateList;
+
+        #endregion
+
+        #region Methods
 
         private void frmAddModifyVendor_Load(object sender, EventArgs e)
         {
@@ -182,5 +195,7 @@ namespace VendorMaintenance
             vendor.ContactFName = txtFirstName.Text;
             vendor.ContactLName = txtLastName.Text;
         }
+
+        #endregion
     }
 }

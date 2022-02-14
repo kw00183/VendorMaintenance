@@ -1,14 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Data.SqlClient;
 using VendorMaintenance.DAL;
 
-namespace PayablesData
+namespace VendorMaintenance
 {
+    /// <summary>
+    /// class used to connect to Terms DAL
+    /// </summary>
     public static class TermsDB
     {
+        #region Methods
+
+        /// <summary>
+        /// method used to build terms object list
+        /// </summary>
+        /// <returns>list of terms objects</returns>
         public static List<Terms> GetTermsList()
         {
             List<Terms> termsList = new List<Terms>();
@@ -24,11 +31,13 @@ namespace PayablesData
                 SqlDataReader reader = selectCommand.ExecuteReader();
                 while (reader.Read())
                 {
-                    Terms term = new Terms();
-                    term.TermsID = (int)reader["TermsID"];
-                    term.Description = reader["Description"].ToString();
-                    // Couldn't unbox with (int); don't know why
-                    term.DueDays = Convert.ToInt32(reader["DueDays"]);
+                    Terms term = new Terms
+                    {
+                        TermsID = (int)reader["TermsID"],
+                        Description = reader["Description"].ToString(),
+                        // Couldn't unbox with (int); don't know why
+                        DueDays = Convert.ToInt32(reader["DueDays"])
+                    };
                     termsList.Add(term);
                 }
                 reader.Close();
@@ -43,5 +52,7 @@ namespace PayablesData
             }
             return termsList;
         }
+
+        #endregion
     }
 }

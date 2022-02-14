@@ -2,24 +2,34 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
-using PayablesData;
+using VendorMaintenance;
 
 namespace VendorMaintenance
 {
+    /// <summary>
+    /// class used to create vendor maintenance form
+    /// </summary>
     public partial class frmVendorMaintenance : Form
     {
+        #region Constructors
+
         public frmVendorMaintenance()
         {
             InitializeComponent();
         }
 
+        #endregion
+
+        #region Data Members
+
         Vendor vendor;
 
-        private void btnGetVendor_Click(object sender, EventArgs e)
+        #endregion
+
+        #region Methods
+
+        private void BtnGetVendor_Click(object sender, EventArgs e)
         {
             if (Validator.IsPresent(txtVendorID) &&
                 Validator.IsInt32(txtVendorID))
@@ -55,22 +65,10 @@ namespace VendorMaintenance
             txtState.Text = vendor.State;
             txtZipCode.Text = vendor.ZipCode;
             btnModify.Enabled = true;
+            btnDelete.Enabled = true;
         }
 
-        private void btnAdd_Click(object sender, EventArgs e)
-        {
-            frmAddModifyVendor addModifyVendorForm = new frmAddModifyVendor();
-            addModifyVendorForm.addVendor = true;
-            DialogResult result = addModifyVendorForm.ShowDialog();
-            if (result == DialogResult.OK)
-            {
-                vendor = addModifyVendorForm.vendor;
-                txtVendorID.Text = vendor.VendorID.ToString();
-                this.DisplayVendor();
-            }
-        }
-
-        private void btnModify_Click(object sender, EventArgs e)
+        private void BtnModify_Click(object sender, EventArgs e)
         {
             frmAddModifyVendor addModifyVendorForm = new frmAddModifyVendor();
             addModifyVendorForm.addVendor = false;
@@ -88,6 +86,19 @@ namespace VendorMaintenance
             }
         }
 
+        private void BtnAdd_Click(object sender, EventArgs e)
+        {
+            frmAddModifyVendor addModifyVendorForm = new frmAddModifyVendor();
+            addModifyVendorForm.addVendor = true;
+            DialogResult result = addModifyVendorForm.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                vendor = addModifyVendorForm.vendor;
+                txtVendorID.Text = vendor.VendorID.ToString();
+                this.DisplayVendor();
+            }
+        }
+
         private void ClearControls()
         {
             txtName.Text = "";
@@ -97,11 +108,42 @@ namespace VendorMaintenance
             txtState.Text = "";
             txtZipCode.Text = "";
             btnModify.Enabled = false;
+            btnDelete.Enabled = false;
         }
 
-        private void btnExit_Click(object sender, EventArgs e)
+        private void BtnExit_Click(object sender, EventArgs e)
         {
             this.Close();
         }
+
+        private void BtnDelete_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Delete " + vendor.Name + "?",
+                "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                try
+                {
+                    if (!(VendorDB.DeleteVendor(vendor)))
+                    {
+                        MessageBox.Show("Another user has updated or deleted " +
+                            "that vendor.", "Database Error");
+                        this.ClearControls();
+                        this.GetVendor(vendor.VendorID);
+                    }
+                    else
+                    {
+                        txtVendorID.Text = "";
+                        this.ClearControls();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, ex.GetType().ToString());
+                }
+            }
+        }
+
+        #endregion
     }
 }

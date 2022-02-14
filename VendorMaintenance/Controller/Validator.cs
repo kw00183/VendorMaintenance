@@ -1,15 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace VendorMaintenance
 {
-    class Validator
+    /// <summary>
+    /// class used to validate fields
+    /// </summary>
+    public class Validator
     {
+        #region Data Members
+
         private static string title = "Entry Error";
 
+        #endregion
+
+        #region Methods
+
+        /// <summary>
+        /// getter/setter for title
+        /// </summary>
         public static string Title
         {
             get
@@ -22,6 +32,11 @@ namespace VendorMaintenance
             }
         }
 
+        /// <summary>
+        /// method used to validate required fields have values
+        /// </summary>
+        /// <param name="control">control</param>
+        /// <returns>returns boolean if field has value</returns>
         public static bool IsPresent(Control control)
         {
             if (control.GetType().ToString() == "System.Windows.Forms.TextBox")
@@ -55,6 +70,11 @@ namespace VendorMaintenance
             return true;
         }
 
+        /// <summary>
+        /// method used to validate if field contains decimal
+        /// </summary>
+        /// <param name="textBox">texbox</param>
+        /// <returns>returns boolean if field has decimal</returns>
         public static bool IsDecimal(TextBox textBox)
         {
             try
@@ -70,6 +90,11 @@ namespace VendorMaintenance
             }
         }
 
+        /// <summary>
+        /// method used to check if field contains integer
+        /// </summary>
+        /// <param name="textBox">textbox</param>
+        /// <returns>returns boolean if field has integer</returns>
         public static bool IsInt32(TextBox textBox)
         {
             try
@@ -85,6 +110,13 @@ namespace VendorMaintenance
             }
         }
 
+        /// <summary>
+        /// method used to validate state and zip
+        /// </summary>
+        /// <param name="textBox">textbox</param>
+        /// <param name="firstZip">first zip</param>
+        /// <param name="lastZip">last zip</param>
+        /// <returns>returns boolean if field has zip code in range of first and last zip</returns>
         public static bool IsStateZipCode(TextBox textBox,
             int firstZip, int lastZip)
         {
@@ -102,6 +134,11 @@ namespace VendorMaintenance
             }
         }
 
+        /// <summary>
+        /// method used to validate the phone number
+        /// </summary>
+        /// <param name="textBox">textbox</param>
+        /// <returns>returns boolean if field has phone in the right format</returns>
         public static bool IsPhoneNumber(TextBox textBox)
         {
             string phoneChars = textBox.Text.Replace(".", "");
@@ -118,5 +155,7 @@ namespace VendorMaintenance
                 return false;
             }
         }
+
+        #endregion
     }
 }

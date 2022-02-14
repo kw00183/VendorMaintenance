@@ -45,6 +45,7 @@
             this.Label3 = new System.Windows.Forms.Label();
             this.txtName = new System.Windows.Forms.TextBox();
             this.Label2 = new System.Windows.Forms.Label();
+            this.btnDelete = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnExit
@@ -56,7 +57,7 @@
             this.btnExit.TabIndex = 49;
             this.btnExit.Text = "Exit";
             this.btnExit.UseVisualStyleBackColor = true;
-            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
+            this.btnExit.Click += new System.EventHandler(this.BtnExit_Click);
             // 
             // btnModify
             // 
@@ -67,7 +68,7 @@
             this.btnModify.TabIndex = 48;
             this.btnModify.Text = "Modify";
             this.btnModify.UseVisualStyleBackColor = true;
-            this.btnModify.Click += new System.EventHandler(this.btnModify_Click);
+            this.btnModify.Click += new System.EventHandler(this.BtnModify_Click);
             // 
             // btnAdd
             // 
@@ -77,7 +78,7 @@
             this.btnAdd.TabIndex = 47;
             this.btnAdd.Text = "Add";
             this.btnAdd.UseVisualStyleBackColor = true;
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            this.btnAdd.Click += new System.EventHandler(this.BtnAdd_Click);
             // 
             // txtState
             // 
@@ -96,7 +97,7 @@
             this.btnGetVendor.TabIndex = 45;
             this.btnGetVendor.Text = "Get Vendor";
             this.btnGetVendor.UseVisualStyleBackColor = true;
-            this.btnGetVendor.Click += new System.EventHandler(this.btnGetVendor_Click);
+            this.btnGetVendor.Click += new System.EventHandler(this.BtnGetVendor_Click);
             // 
             // txtVendorID
             // 
@@ -210,12 +211,24 @@
             this.Label2.TabIndex = 33;
             this.Label2.Text = "Name:";
             // 
+            // btnDelete
+            // 
+            this.btnDelete.Enabled = false;
+            this.btnDelete.Location = new System.Drawing.Point(177, 193);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(75, 23);
+            this.btnDelete.TabIndex = 50;
+            this.btnDelete.Text = "Delete";
+            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.BtnDelete_Click);
+            // 
             // frmVendorMaintenance
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnExit;
             this.ClientSize = new System.Drawing.Size(373, 231);
+            this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.btnModify);
             this.Controls.Add(this.btnAdd);
@@ -261,6 +274,7 @@
         internal System.Windows.Forms.Label Label3;
         internal System.Windows.Forms.TextBox txtName;
         internal System.Windows.Forms.Label Label2;
+        internal System.Windows.Forms.Button btnDelete;
     }
 }
 

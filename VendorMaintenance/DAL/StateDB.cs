@@ -1,14 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Data.SqlClient;
 using VendorMaintenance.DAL;
 
-namespace PayablesData
+namespace VendorMaintenance
 {
+    /// <summary>
+    /// class used to connect to state DAL
+    /// </summary>
     public static class StateDB
     {
+        #region Methods
+
+        /// <summary>
+        /// method used to generate list of state objects
+        /// </summary>
+        /// <returns>list of states</returns>
         public static List<State> GetStateList()
         {
             List<State> stateList = new List<State>();
@@ -24,11 +31,13 @@ namespace PayablesData
                 SqlDataReader reader = selectCommand.ExecuteReader();
                 while (reader.Read())
                 {
-                    State state = new State();
-                    state.StateCode = reader["StateCode"].ToString();
-                    state.StateName = reader["StateName"].ToString();
-                    state.FirstZipCode = (int)reader["FirstZipCode"];
-                    state.LastZipCode = (int)reader["LastZipCode"];
+                    State state = new State
+                    {
+                        StateCode = reader["StateCode"].ToString(),
+                        StateName = reader["StateName"].ToString(),
+                        FirstZipCode = (int)reader["FirstZipCode"],
+                        LastZipCode = (int)reader["LastZipCode"]
+                    };
                     stateList.Add(state);
                 }
                 reader.Close();
@@ -43,5 +52,7 @@ namespace PayablesData
             }
             return stateList;
         }
+
+        #endregion
     }
 }

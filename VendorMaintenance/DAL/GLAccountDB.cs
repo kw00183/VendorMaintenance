@@ -1,14 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Data.SqlClient;
 using VendorMaintenance.DAL;
 
-namespace PayablesData
+namespace VendorMaintenance
 {
+    /// <summary>
+    /// class used to connect to the GL Account DAL
+    /// </summary>
     public static class GLAccountDB
     {
+        #region Methods
+
+        /// <summary>
+        /// method used to get accounts in list
+        /// </summary>
+        /// <returns>list of accounts</returns>
         public static List<GLAccount> GetGLAccountList()
         {
             List<GLAccount> accountList = new List<GLAccount>();
@@ -24,9 +31,11 @@ namespace PayablesData
                 SqlDataReader reader = selectCommand.ExecuteReader();
                 while (reader.Read())
                 {
-                    GLAccount account = new GLAccount();
-                    account.AccountNo = (int)reader["AccountNo"];
-                    account.Description = reader["Description"].ToString();
+                    GLAccount account = new GLAccount
+                    {
+                        AccountNo = (int)reader["AccountNo"],
+                        Description = reader["Description"].ToString()
+                    };
                     accountList.Add(account);
                 }
                 reader.Close();
@@ -41,5 +50,7 @@ namespace PayablesData
             }
             return accountList;
         }
+
+        #endregion
     }
 }

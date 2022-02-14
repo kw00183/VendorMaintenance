@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
-namespace PayablesData
+namespace VendorMaintenance
 {
+    /// <summary>
+    /// class used to create vendor object
+    /// </summary>
     public class Vendor
     {
+        #region Data Members
+
         private int vendorID;
         private string name;
         private string address1;
@@ -20,8 +23,22 @@ namespace PayablesData
         private int defaultTermsID;
         private int defaultAccountNo;
 
+        #endregion
+
+        #region Constructors
+
+        /// <summary>
+        /// constructor
+        /// </summary>
         public Vendor() { }
 
+        #endregion
+
+        #region Methods
+
+        /// <summary>
+        /// getter/setter for vendorID
+        /// </summary>
         public int VendorID
         {
             get
@@ -34,6 +51,9 @@ namespace PayablesData
             }
         }
 
+        /// <summary>
+        /// getter/setter for name
+        /// </summary>
         public string Name
         {
             get
@@ -46,6 +66,9 @@ namespace PayablesData
             }
         }
 
+        /// <summary>
+        /// getter/setter for address1
+        /// </summary>
         public string Address1
         {
             get
@@ -58,6 +81,9 @@ namespace PayablesData
             }
         }
 
+        /// <summary>
+        /// getter/setter for address2
+        /// </summary>
         public string Address2
         {
             get
@@ -70,6 +96,9 @@ namespace PayablesData
             }
         }
 
+        /// <summary>
+        /// getter/setter for city
+        /// </summary>
         public string City
         {
             get
@@ -82,6 +111,9 @@ namespace PayablesData
             }
         }
 
+        /// <summary>
+        /// getter/setter for state
+        /// </summary>
         public string State
         {
             get
@@ -94,6 +126,9 @@ namespace PayablesData
             }
         }
 
+        /// <summary>
+        /// getter/setter for zip code
+        /// </summary>
         public string ZipCode
         {
             get
@@ -106,6 +141,9 @@ namespace PayablesData
             }
         }
 
+        /// <summary>
+        /// getter/setter for phone
+        /// </summary>
         public string Phone
         {
             get
@@ -118,6 +156,9 @@ namespace PayablesData
             }
         }
 
+        /// <summary>
+        /// getter/setter for contact list
+        /// </summary>
         public string ContactLName
         {
             get
@@ -130,6 +171,9 @@ namespace PayablesData
             }
         }
 
+        /// <summary>
+        /// getter/setter for contact first name
+        /// </summary>
         public string ContactFName
         {
             get
@@ -142,6 +186,9 @@ namespace PayablesData
             }
         }
 
+        /// <summary>
+        /// getter/setter for default termsID
+        /// </summary>
         public int DefaultTermsID
         {
             get
@@ -154,6 +201,9 @@ namespace PayablesData
             }
         }
 
+        /// <summary>
+        /// getter/setter for default account number
+        /// </summary>
         public int DefaultAccountNo
         {
             get
@@ -165,5 +215,7 @@ namespace PayablesData
                 defaultAccountNo = value;
             }
         }
+
+        #endregion
     }
 }

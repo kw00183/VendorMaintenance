@@ -1,18 +1,35 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
-namespace PayablesData
+namespace VendorMaintenance
 {
+    /// <summary>
+    /// class used to create terms object
+    /// </summary>
     public class Terms
     {
+        #region Data Members
+
         private int termsID;
         private string description;
         private int dueDays;
 
+        #endregion
+
+        #region Constructors
+
+        /// <summary>
+        /// constructor
+        /// </summary>
         public Terms() { }
 
+        #endregion
+
+        #region Methods
+
+        /// <summary>
+        /// getter/setter for termsID
+        /// </summary>
         public int TermsID
         {
             get
@@ -25,6 +42,9 @@ namespace PayablesData
             }
         }
 
+        /// <summary>
+        /// getter/setter for description
+        /// </summary>
         public string Description
         {
             get
@@ -37,6 +57,9 @@ namespace PayablesData
             }
         }
 
+        /// <summary>
+        /// getter/setter for due days
+        /// </summary>
         public int DueDays
         {
             get
@@ -48,5 +71,7 @@ namespace PayablesData
                 dueDays = value;
             }
         }
+
+        #endregion
     }
 }
