@@ -8,7 +8,7 @@ namespace VendorMaintenance
     /// <summary>
     /// class used to connect to the GL Account DAL
     /// </summary>
-    public static class GLAccountDB
+    public class GLAccountDB
     {
         #region Methods
 
@@ -16,7 +16,7 @@ namespace VendorMaintenance
         /// method used to get accounts in list
         /// </summary>
         /// <returns>list of accounts</returns>
-        public static List<GLAccount> GetGLAccountList()
+        public List<GLAccount> GetGLAccountList()
         {
             List<GLAccount> accountList = new List<GLAccount>();
             SqlConnection connection = PayablesDBConnection.GetConnection();

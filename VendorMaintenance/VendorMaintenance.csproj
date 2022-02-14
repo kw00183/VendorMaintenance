@@ -53,6 +53,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controller\GLAccountController.cs" />
+    <Compile Include="Controller\StateController.cs" />
+    <Compile Include="Controller\TermsController.cs" />
+    <Compile Include="Controller\VendorController.cs" />
     <Compile Include="DAL\GLAccountDB.cs" />
     <Compile Include="DAL\PayablesDBConnection.cs" />
     <Compile Include="DAL\StateDB.cs" />
@@ -102,7 +106,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="Controller\Validator.cs" />
+    <Compile Include="Model\Validator.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

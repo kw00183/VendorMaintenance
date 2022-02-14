@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Windows.Forms;
 using VendorMaintenance;
+using VendorMaintenance.Controller;
 
 namespace VendorMaintenance
 {
@@ -12,6 +13,18 @@ namespace VendorMaintenance
     /// </summary>
     public partial class frmAddModifyVendor : Form
     {
+        #region Data members
+
+        private readonly VendorController vendorController;
+        private readonly StateController stateController;
+        private readonly TermsController termsController;
+        private readonly GLAccountController accountController;
+        public bool addVendor;
+        public Vendor vendor;
+        private List<State> stateList;
+
+        #endregion
+
         #region Constructors
 
         /// <summary>
@@ -20,15 +33,11 @@ namespace VendorMaintenance
         public frmAddModifyVendor()
         {
             InitializeComponent();
+            this.vendorController = new VendorController();
+            this.stateController = new StateController();
+            this.termsController = new TermsController();
+            this.accountController = new GLAccountController();
         }
-
-        #endregion
-
-        #region Data Members
-
-        public bool addVendor;
-        public Vendor vendor;
-        private List<State> stateList;
 
         #endregion
 
@@ -55,19 +64,19 @@ namespace VendorMaintenance
         {
             try
             {
-                stateList = StateDB.GetStateList();
+                stateList = this.stateController.GetStateList();
                 cboStates.DataSource = stateList;
                 cboStates.DisplayMember = "StateName";
                 cboStates.ValueMember = "StateCode";
 
                 List<Terms> termslist;
-                termslist = TermsDB.GetTermsList();
+                termslist = this.termsController.GetTermsList();
                 cboTerms.DataSource = termslist;
                 cboTerms.DisplayMember = "Description";
                 cboTerms.ValueMember = "TermsID";
 
                 List<GLAccount> accountList;
-                accountList = GLAccountDB.GetGLAccountList();
+                accountList = this.accountController.GetGLAccountList();
                 cboAccounts.DataSource = accountList;
                 cboAccounts.DisplayMember = "Description";
                 cboAccounts.ValueMember = "AccountNo";
@@ -114,7 +123,7 @@ namespace VendorMaintenance
                     this.PutVendorData(vendor);
                     try
                     {
-                        vendor.VendorID = VendorDB.AddVendor(vendor);
+                        vendor.VendorID = this.vendorController.AddVendor(vendor);
                         this.DialogResult = DialogResult.OK;
                     }
                     catch (Exception ex)
@@ -129,7 +138,7 @@ namespace VendorMaintenance
                     this.PutVendorData(newVendor);
                     try
                     {
-                        if (!VendorDB.UpdateVendor(vendor, newVendor))
+                        if (!this.vendorController.UpdateVendor(vendor, newVendor))
                         {
                             MessageBox.Show("Another user has updated or " +
                                 "deleted that vendor.", "Database Error");

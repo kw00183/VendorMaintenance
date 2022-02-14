@@ -8,7 +8,7 @@ namespace VendorMaintenance
     /// <summary>
     /// class used to connect to Terms DAL
     /// </summary>
-    public static class TermsDB
+    public class TermsDB
     {
         #region Methods
 
@@ -16,7 +16,7 @@ namespace VendorMaintenance
         /// method used to build terms object list
         /// </summary>
         /// <returns>list of terms objects</returns>
-        public static List<Terms> GetTermsList()
+        public List<Terms> GetTermsList()
         {
             List<Terms> termsList = new List<Terms>();
             SqlConnection connection = PayablesDBConnection.GetConnection();

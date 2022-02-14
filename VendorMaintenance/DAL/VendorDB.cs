@@ -9,7 +9,7 @@ namespace VendorMaintenance
     /// <summary>
     /// class used to connect to Vendor DAL
     /// </summary>
-    public static class VendorDB
+    public class VendorDB
     {
         #region Methods
 
@@ -18,7 +18,7 @@ namespace VendorMaintenance
         /// </summary>
         /// <param name="vendorID">vendorID</param>
         /// <returns>vendor object</returns>
-        public static Vendor GetVendor(int vendorID)
+        public Vendor GetVendor(int vendorID)
         {
             Vendor vendor = new Vendor();
             SqlConnection connection = PayablesDBConnection.GetConnection();
@@ -78,7 +78,7 @@ namespace VendorMaintenance
         /// </summary>
         /// <param name="vendor">vendor object</param>
         /// <returns>integer of vendorID</returns>
-        public static int AddVendor(Vendor vendor)
+        public int AddVendor(Vendor vendor)
         {
             SqlConnection connection = PayablesDBConnection.GetConnection();
             string insertStatement =
@@ -180,7 +180,7 @@ namespace VendorMaintenance
         /// </summary>
         /// <param name="vendor">vendor object</param>
         /// <returns>boolean of if vendor was deleted</returns>
-        public static bool DeleteVendor(Vendor vendor)
+        public bool DeleteVendor(Vendor vendor)
         {
             SqlConnection connection = PayablesDBConnection.GetConnection();
             string deleteStatement =
@@ -293,7 +293,7 @@ namespace VendorMaintenance
         /// <param name="oldVendor">old vendor object</param>
         /// <param name="newVendor">new vendor object</param>
         /// <returns>boolean if vendor was updated</returns>
-        public static bool UpdateVendor(Vendor oldVendor, Vendor newVendor)
+        public bool UpdateVendor(Vendor oldVendor, Vendor newVendor)
         {
             SqlConnection connection = PayablesDBConnection.GetConnection();
             string updateStatement =

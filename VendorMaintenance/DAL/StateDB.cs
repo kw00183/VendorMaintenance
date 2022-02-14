@@ -8,7 +8,7 @@ namespace VendorMaintenance
     /// <summary>
     /// class used to connect to state DAL
     /// </summary>
-    public static class StateDB
+    public class StateDB
     {
         #region Methods
 
@@ -16,7 +16,7 @@ namespace VendorMaintenance
         /// method used to generate list of state objects
         /// </summary>
         /// <returns>list of states</returns>
-        public static List<State> GetStateList()
+        public List<State> GetStateList()
         {
             List<State> stateList = new List<State>();
             SqlConnection connection = PayablesDBConnection.GetConnection();

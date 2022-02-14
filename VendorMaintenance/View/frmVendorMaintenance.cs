@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Windows.Forms;
 using VendorMaintenance;
+using VendorMaintenance.Controller;
 
 namespace VendorMaintenance
 {
@@ -12,18 +13,21 @@ namespace VendorMaintenance
     /// </summary>
     public partial class frmVendorMaintenance : Form
     {
+        #region Data members
+
+        private readonly VendorController vendorController;
+        private Vendor vendor;
+
+        #endregion
+
         #region Constructors
 
         public frmVendorMaintenance()
         {
             InitializeComponent();
+            this.vendorController = new VendorController();
+            
         }
-
-        #endregion
-
-        #region Data Members
-
-        Vendor vendor;
 
         #endregion
 
@@ -43,7 +47,7 @@ namespace VendorMaintenance
         {
             try
             {
-                vendor = VendorDB.GetVendor(vendorID);
+                vendor = this.vendorController.GetVendor(vendorID);
                 if (vendor == null)
                     MessageBox.Show("No vendor found with this ID. " +
                         "Please try again.", "Vendor Not Found");
@@ -124,7 +128,7 @@ namespace VendorMaintenance
             {
                 try
                 {
-                    if (!(VendorDB.DeleteVendor(vendor)))
+                    if (!(this.vendorController.DeleteVendor(vendor)))
                     {
                         MessageBox.Show("Another user has updated or deleted " +
                             "that vendor.", "Database Error");
